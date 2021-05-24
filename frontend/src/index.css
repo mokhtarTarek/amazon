@@ -1,0 +1,237 @@
+html {
+  font-size: 62.5%; /*16px * 62.5% = 10px = 1rem : compatible with any browser*/
+  box-sizing: border-box; /*prend en consideration les border et les padding de l'element*/
+}
+body {
+  font: 1.6rem Helvetica;
+  height: 100vh; /*viewPort Height : The viewport is the user's visible area of a web page.*/
+  margin: 0;
+}
+#root {
+  height: 100%;
+}
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    "header"
+    "main"
+    "footer"; /*three rows one column*/
+  grid-template-columns: 1fr;
+  grid-template-rows: 5rem 1fr 5rem;
+  height: 100%; /*the grid cover tha whole viewPort */
+}
+.header {
+  grid-area: header;
+  background-color: #203040;
+  color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+}
+.brand a {
+  color: #ffffff;
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+.header-links a {
+  color: #ffffff;
+  text-decoration: none;
+  margin: 1rem;
+}
+.header-links a:hover {
+  color: cornflowerblue;
+}
+.main {
+  grid-area: main;
+}
+.footer {
+  grid-area: footer;
+  background-color: #203040;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+a {
+  text-decoration: none;
+}
+a:hover {
+  color: rgb(237, 143, 100);
+}
+/* Home Screen*/
+.products {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.products li {
+  flex: O 1 34rem; /*flex grow flex shrink flex basis*/
+  margin: 1rem;
+  height: 50rem;
+  border-bottom: 0.1rem #c0c0c0 solid;
+  list-style-type: none;
+  padding: 0;
+}
+.product {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+.product-name {
+  font-size: 2rem;
+  font-weight: bold;
+}
+.Product-brand {
+  font-size: 1.2rem;
+  color: #808080;
+}
+.product-price {
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: #808080;
+}
+.product-image {
+  max-width: 34rem;
+  max-height: 34rem;
+}
+.product-rating {
+  margin-bottom: 1rem;
+}
+
+/*sideBar*/
+
+.brand button {
+  font-size: 3rem;
+  padding: 0.5rem;
+  background: none;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+}
+.sidebar {
+  position: fixed;
+  transition: all 0.5s;
+  transform: translateX(-30rem);
+  width: 30rem;
+  background-color: #ffffff;
+  height: 100%;
+}
+.sidebar.open {
+  /* class ="sidebar open "  add class second class called open next to sidebar class*/
+  transform: translateX(0);
+}
+.sidebar-close-button {
+  /*border-radius: 50%;
+  border:.1rem solid;*/
+  width: 3rem;
+  height: 3rem;
+  font-size: 2rem;
+  padding: 0;
+  cursor: pointer;
+  position: absolute;
+  right: 0.5rem;
+  top: 1.5rem;
+}
+/* Product Details*/
+.details {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  padding: 1rem;
+}
+.details-image {
+  flex: 2 1 50rem;
+}
+.details-image img {
+  max-width: 50rem;
+  width: 100%;
+  max-height: 50rem;
+  
+}
+.details-infos {
+  flex: 1 1 30rem;
+}
+.details-action {
+  flex: 1 1 30rem;
+}
+.details-infos ul, .details-action ul{
+  list-style: none;
+  padding: 0;
+}
+.details-infos li, .details-action li{
+  margin-bottom:1rem ;
+}
+.back-to-result{
+  padding: 1rem;
+}
+.details-action{
+  border: .1rem rgb(109, 107, 107) solid;
+  border-radius: .5rem;
+  background-color:#f8f8f8;
+  padding: 1rem;
+}
+.details-action ul li:last-child{
+  display: flex;
+  flex-direction: column;
+}
+.button{
+  padding: 1rem;
+  border: .1rem #808080 solid;
+  cursor: pointer;
+  border-radius: .5rem;
+  background-color: rgb(8, 170, 170);
+  color: #ffffff;
+}
+.button:hover{
+  color:white;
+  background-color: rgb(1, 153, 153);
+}
+/* cart */
+.cart{
+  border: 1px cadetblue solid;
+ padding: .1rem;
+  margin:1rem;
+  border-radius: 5px;
+
+}
+.cart li{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: ghostwhite;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.cart-image img{
+  max-height: 15rem;
+  max-width: 20rem;
+}
+.cart-list{
+  position: absolute;
+  right:30rem;
+  padding: 2rem;
+  
+}
+.cart-list div{
+  padding: .3rem;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size:16px;
+}
+
+.cart-action{
+  display: flex;
+  flex-direction: column;
+  background-color: #f8f8f8;
+  align-items: center;
+  /* border:.1rem #808080 solid; */
+  border-radius: .5rem;
+  padding: 1rem;
+  border: 1px rgb(38, 110, 107) solid;
+}
