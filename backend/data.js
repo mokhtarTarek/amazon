@@ -33,7 +33,7 @@ const data = {
             brand: 'nike',
             rating: 4.5,
             numReviews: 8,
-            countInStock:0
+            countInStock:10
         }
         
     ]

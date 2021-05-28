@@ -6,7 +6,7 @@ wrapp App.js between <BrouserRouter>
 <Route path="/" exact={true} component = {HomeScreen} />
 
 ## Create Array of element:
-**var foo = new Array(3)**
+**var foo = new Array(3)**//create new array with 3 element
 convert int to array : ** [...Array(int).keys()]
 
 ## Redirect User to onother Url:
