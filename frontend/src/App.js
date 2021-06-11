@@ -1,58 +1,56 @@
-import React from 'react'
+import React from "react";
 
 import { BrowserRouter, Link, Route } from "react-router-dom";
 
-import "./App.css";
-import ProductScreen from './components/ProductScreen';
-import HomeScreen from './components/HomeScreen';
-import CartScreen from './components/CartScreen';
+//import "./App.css";
+import ProductScreen from "./screens/ProductScreen";
+import HomeScreen from "./screens/HomeScreen";
+import CartScreen from "./components/CartScreen";
+import SigninScreen from "./components/SigninScreen";
+import RegisterScreen from "./components/RegisterScreen";
+import { useSelector } from "react-redux";
+
+import ShippingScreen from "./components/ShippingScreen";
+import PaymentScreen from "./components/PayementScreen";
+import PlaceOrder from "./components/PlaceOrder";
+
 
 function App() {
+  //GET USER INFOS FROM REDUX STORE
+  const userSignin = useSelector((state) => state.userSignIn);
+  //DESTRUCTURE
+  const { userInfos } = userSignin;
+
   const openMenu = () => {
-    document.querySelector(".sidebar").classList.add("open");
+    document.querySelector(".sidebar").classNameList.add("open");
   };
   const closeMenu = () => {
-    document.querySelector(".sidebar").classList.remove("open");
+    document.querySelector(".sidebar").classNameList.remove("open");
   };
-  return (
-    <BrowserRouter>
+
+  return (<BrowserRouter>
     <div className="grid-container">
-      <header className="header">
-        <div className="brand">
-          <button onClick={openMenu}>&#9776;</button>
-          <Link to = "/">amazona</Link>
+      <header className="row">
+        <div>
+          <a className="brand" href="index.html">
+            amazon
+          </a>
         </div>
-        <div className="header-links">
+        <div>
           <a href="cart.html">Cart</a>
           <a href="signin">Sign In</a>
         </div>
       </header>
-      <aside className="sidebar">
-        <h3>Sopping Categories</h3>
-        <button className="sidebar-close-button" onClick={closeMenu}>
-          x
-        </button>
-        <ul>
-          <li>
-            <a href="index.html">Pants</a>
-          </li>
-          <li>
-            <a href="index.html">Shirts</a>
-          </li>
-        </ul>
-      </aside>
-      {/* the parent compo*/}
-      {/*in this main tag the chiled components will be rendred relative to routes path */}
-      <main className="main">
-        <div className="content">
-          <Route path="/products/:id" component = {ProductScreen} />
-          {/* :id? the id is optional */}
-          <Route path='/cart/:id?' component = {CartScreen}/>
-          <Route path="/" exact={true} component = {HomeScreen} />
-        </div>
+
+      <main>
+
+        <Route path = '/products/:id'  component={ProductScreen}></Route>
+        <Route path = '/'  component={HomeScreen} exact></Route>
+
+        
       </main>
 
-      <footer className="footer">All right reserved</footer>
+      <footer className="row center">All right reserved</footer>
     </div>
     </BrowserRouter>
   );
