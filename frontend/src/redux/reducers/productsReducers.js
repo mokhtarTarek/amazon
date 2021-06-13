@@ -6,10 +6,10 @@ import {PRODUCT_DETAILS_FAIL,PRODUCT_DETAILS_REQUEST,PRODUCT_DETAILS_SUCCESS,
      PRODUCT_DELETE_FAIL, PRODUCT_DELETE_REQUEST, PRODUCT_DELETE_SECCESS}from "../constants/productsConstants"
 
 // 2 action type
-function productListReducer(state={products:[]},action){
+function productListReducer(state={loading:true,products:[]},action){
     switch(action.type){
         case PRODUCT_LIST_REQUEST :
-            return {loading : true,products:[]};
+            return {loading : true};
         case PRODUCT_LIST_SECCESS :
             return {loading : false, products : action.payload};
         case PRODUCT_LIST_FAIL :
