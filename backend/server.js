@@ -1,40 +1,41 @@
 import express from 'express';
-//import data from './data';
-import dotenv from 'dotenv';
-import config from './config';
-import mongoose from 'mongoose'
-import bodyParser from 'body-parser'
-import userRoute from './routes/userRoute'
-import productRoute from './routes/productRoute'
+import data from './data.js';
+// import dotenv from 'dotenv';
+// import config from './config';
+// import mongoose from 'mongoose'
+// import bodyParser from 'body-parser'
+// import userRoute from './routes/userRoute'
+// import productRoute from './routes/productRoute'
 
-dotenv.config()
+// dotenv.config()
 
-const mongodbUrl = config.MONGODB_URL
-//console.log(mongodbUrl)
-mongoose.connect(mongodbUrl, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true })
+// const mongodbUrl = config.MONGODB_URL
+// //console.log(mongodbUrl)
+// mongoose.connect(mongodbUrl, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true })
 
 const app = express();
-app.use(bodyParser.json())
+// app.use(bodyParser.json())
 
-app.use('/api/users',userRoute)
-app.use('/api/products',productRoute)
+// app.use('/api/users',userRoute)
+// app.use('/api/products',productRoute)
 
 //-----------------------STATIC API------------------------
 
-// app.get("/api/products/:id",(req,res)=>{
-//     const productId = req.params.id
-//     const product = data.products.find(x=>x._id===productId)
-//     if (product) {
-//         res.send(product)
-//     } else {
-//         res.status(404)
-//         .send({msg:'product not found'})
-//     }
+app.get("/api/products/:id",(req,res)=>{
+    const productId = req.params.id
+    const product = data.products.find(p=>p._id===productId)
+    if (product) {
+        res.send(product)
+    } else {
+        res.status(404)
+        .send({message:'product not found'})
+    }
     
-// })
-// app.get("/api/products",(req,res)=>{
-//     res.send(data.products);
-// })
+})
+app.get("/api/products",(req,res)=>{
+    res.send(data.products);
+})
 
 //---------------------------------------------------------
-app.listen(5000,()=>console.log("server started at http://localhost:5000"))
+const port = process.env.PORT || 5000;
+app.listen(port,()=>console.log(`server started at http://localhost:${port}`))

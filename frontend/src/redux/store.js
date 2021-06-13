@@ -11,10 +11,10 @@ import { userRegisterReducers } from "./reducers/userReducers";
 const cartItems = Cookie.getJSON("cartItems") || [];
 const userInfos = Cookie.getJSON("userInfos") || null;
 
-const initialState = {cart:{cartItems},userSignIn:{userInfos}};
+const initialState = {};
 
 const reducer = combineReducers({
-    productList : productListReducer,
+    productList: productListReducer,
     productDetails: productDetailReducer,
     cart: cartReducer,
     userSignIn:userSigninReducers,
@@ -24,5 +24,13 @@ const reducer = combineReducers({
 })
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose 
-const store = createStore(reducer, initialState, composeEnhancer(applyMiddleware(thunk)));
+const store = createStore(
+    reducer,
+    initialState, 
+    composeEnhancer(applyMiddleware(thunk)));
 export default store; 
+
+/*
+redux thunk make it possible to send AJAX request 
+in actions
+*/
