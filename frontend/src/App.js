@@ -5,7 +5,8 @@ import { BrowserRouter, Link, Route } from "react-router-dom";
 //import "./App.css";
 import ProductScreen from "./screens/ProductScreen";
 import HomeScreen from "./screens/HomeScreen";
-import CartScreen from "./components/CartScreen";
+import CartScreen from "./screens/CartScreen";
+
 import SigninScreen from "./components/SigninScreen";
 import RegisterScreen from "./components/RegisterScreen";
 import { useSelector } from "react-redux";
@@ -32,18 +33,18 @@ function App() {
     <div className="grid-container">
       <header className="row">
         <div>
-          <a className="brand" href="index.html">
+          <a className="brand" href="/">
             amazon
           </a>
         </div>
         <div>
-          <a href="cart.html">Cart</a>
-          <a href="signin">Sign In</a>
+          <a href="/cart">Cart</a>
+          <a href="/signin">Sign In</a>
         </div>
       </header>
 
       <main>
-
+        <Route path = '/cart/:id' component={CartScreen}></Route>
         <Route path = '/products/:id'  component={ProductScreen}></Route>
         <Route path = '/'  component={HomeScreen} exact></Route>
 

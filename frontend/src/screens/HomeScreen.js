@@ -1,38 +1,42 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import data from "../data";
 import Product from "../components/Product";
-
-
-
-//import data from '../data'
 import axios from "axios";
+
 import { useDispatch, useSelector } from "react-redux";
 import { listProducts } from "../redux/actions/productAction";
+import LoadingBox from "../components/LoadingBox";
+import MessageBox from "../components/MessageBox";
+
 function HomeScreen(props) {
-  //const[products,setProducts] = useState([]);
   //store.state{productList:{products:[],loading:false,error:''}}
   const productList = useSelector((state) => state.productList);
-  const { products, loading, error } = productList;
+  const {  loading, error,products } = productList;
   const dispatch = useDispatch();
-  useEffect(() => {
-    // const fetchData = async () => {
-    // const {data} = await axios.get("/api/products");
-    // setProducts(data)
-    // }
-    // fetchData();
 
+<<<<<<< HEAD
     dispatch(listProducts());
     
     // return ()=>{
+=======
+  useEffect(() => {
+    dispatch(listProducts())
+    
+  }, [dispatch]);
+>>>>>>> 5a8dc7ca8463c3c184077ceb6d9dde38efcd0bca
 
-    // }
-  }, []);
   return (
-    <div className="row center">
-      {data.products.map((product) => (
-        <Product key={product._id} product={product} />
-      ))}
+    <div>
+      {loading ? (
+        <LoadingBox/>
+      ) : error ? (
+        <MessageBox variant="danger" >{error}</MessageBox>
+      ) : (
+        <div className="row center">
+          {products.map((product) => (
+            <Product key={product._id} product={product} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }
