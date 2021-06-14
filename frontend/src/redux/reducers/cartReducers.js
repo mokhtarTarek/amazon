@@ -3,27 +3,25 @@ import {
   CART_REMOVE_ITEM,
   CART_SAVE_PAYEMENT,
   CART_SAVE_SHIPPING,
-} from "../constants/productsConstants";
+} from "../constants/cartConstants";
 
-function cartReducer(state = { cartItems: [],shipping:{},paymen:{} }, action) {
+function cartReducer(state = { cartItems: [],shipping:{},payment:{} }, action) {
   switch (action.type) {
     case CART_ADD_ITEM:
-      /*
-    check if the item exist in the cartItems if true
-    we update the current cartItems
-    esle we append the cartItems
-    */
-
-      const item = action.payload; //get the item
-      const product = state.cartItems.find((x) => x.product === item.product);
-      if (product) {
+    //verifier si l'objet exsit dans la carte
+      const item = action.payload; 
+      //product: data._id,
+      const existproduct = state.cartItems.find((x) => x.productId === item.productId);
+      if (existproduct) {
         return {
+          ...state,
           cartItems: state.cartItems.map((x) =>
-            x.product === product.product ? item : x
+            x.productId === existproduct.productId ? item : x
           ),
         };
       }
       return {
+        ...state,
         cartItems: [...state.cartItems, item],
       };
     case CART_REMOVE_ITEM:

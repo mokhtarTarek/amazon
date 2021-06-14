@@ -82,8 +82,6 @@ li{
 .col-2{
   flex: 2 1 50rem;/* 1/2 shrinkable width */
   text-align: center;
-<<<<<<< HEAD
-=======
 }
 input,textarea,select,
 button{
@@ -108,7 +106,6 @@ button.primary{
 button.block{
   width: 100%;
 
->>>>>>> 5a8dc7ca8463c3c184077ceb6d9dde38efcd0bca
 }
 
 /*header*/
@@ -128,16 +125,6 @@ img{
   border-radius: .5rem;
 }
 img.medium{
-<<<<<<< HEAD
-  max-width:20rem ;
-  height:20rem;
-  width: 100%;
-}
-.large{
-  max-width:35rem ;
-  height:50rem;
-=======
->>>>>>> 5a8dc7ca8463c3c184077ceb6d9dde38efcd0bca
   width: 100%;
   max-width:20rem ;
   height:20rem;
@@ -148,6 +135,15 @@ img.medium{
   max-width: 35rem;
   height: 50rem;
   
+}
+
+.badge{
+  background-color: #a02020;
+  color: white;
+  border-radius: 50%;
+  padding: 0.2rem 0.7 rem;
+  font-size: 1.7rem;
+  margin-left: .2rem;
 }
 
 /*card */
@@ -182,6 +178,7 @@ margin-bottom: .5rem;
 }
 
 /*rating*/
+
 .rating span{
   color:#F0C040;
   margin: .1rem;
@@ -189,7 +186,8 @@ margin-bottom: .5rem;
 .rating span:last-child{
   color: #404040;
 }
-/*  */
+
+/* alerts */
 .danger{
   color: brown;
 }

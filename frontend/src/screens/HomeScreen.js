@@ -13,16 +13,10 @@ function HomeScreen(props) {
   const {  loading, error,products } = productList;
   const dispatch = useDispatch();
 
-<<<<<<< HEAD
-    dispatch(listProducts());
-    
-    // return ()=>{
-=======
   useEffect(() => {
     dispatch(listProducts())
     
   }, [dispatch]);
->>>>>>> 5a8dc7ca8463c3c184077ceb6d9dde38efcd0bca
 
   return (
     <div>

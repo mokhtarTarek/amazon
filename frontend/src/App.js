@@ -17,11 +17,14 @@ import PlaceOrder from "./components/PlaceOrder";
 
 
 function App() {
+  //GET CARTiTEMS FROM REDUX STORE
+  const cart = useSelector(state => state.cart)
+  const { cartItems } = cart;
   //GET USER INFOS FROM REDUX STORE
-  const userSignin = useSelector((state) => state.userSignIn);
+  //const userSignin = useSelector((state) => state.userSignIn);
   //DESTRUCTURE
-  const { userInfos } = userSignin;
-
+  //const { userInfos } = userSignin;
+ 
   const openMenu = () => {
     document.querySelector(".sidebar").classNameList.add("open");
   };
@@ -33,27 +36,32 @@ function App() {
     <div className="grid-container">
       <header className="row">
         <div>
-          <a className="brand" href="/">
+          <Link className="brand" to="/">
             amazon
-          </a>
+          </Link>
         </div>
         <div>
-          <a href="/cart">Cart</a>
-          <a href="/signin">Sign In</a>
+          <Link to="/cart">Cart
+            {
+              cartItems.length > 0 &&
+              <span className='badge' > {cartItems.length} </span>
+            }
+          </Link>
+          <Link to="/signin">Sign In</Link>
         </div>
       </header>
 
       <main>
-        <Route path = '/cart/:id' component={CartScreen}></Route>
-        <Route path = '/products/:id'  component={ProductScreen}></Route>
-        <Route path = '/'  component={HomeScreen} exact></Route>
+        <Route path='/cart/:id' component={CartScreen}></Route>
+        <Route path='/products/:id' component={ProductScreen}></Route>
+        <Route path='/' component={HomeScreen} exact></Route>
 
-        
+
       </main>
 
       <footer className="row center">All right reserved</footer>
     </div>
-    </BrowserRouter>
+  </BrowserRouter>
   );
 }
 
