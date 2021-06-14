@@ -1,237 +1,154 @@
-html {
-  font-size: 62.5%; /*16px * 62.5% = 10px = 1rem : compatible with any browser*/
-  box-sizing: border-box; /*prend en consideration les border et les padding de l'element*/
+html{
+  font-size: 62.5%;/*16px * 62.5% = 10px = 1rem : compatible with any browser*/
+  box-sizing: border-box;/*prend en consideration les border et les padding de l'element*/
 }
-body {
-  font: 1.6rem Helvetica;
-  height: 100vh; /*viewPort Height : The viewport is the user's visible area of a web page.*/
+body{
+  font: 1.6rem Helvetica,Arial,sans-serif;
+  height: 100vh;/*viewPort Height : The viewport is the user's visible area of a web page.*/
   margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
-#root {
+#root{
   height: 100%;
 }
-.grid-container {
-  display: grid;
-  grid-template-areas:
-    "header"
-    "main"
-    "footer"; /*three rows one column*/
+.grid-container{
+  display:grid;
+  grid-template-areas: 
+  "header"
+  "main"
+  "footer";/*three rows one column*/
   grid-template-columns: 1fr;
   grid-template-rows: 5rem 1fr 5rem;
-  height: 100%; /*the grid cover tha whole viewPort */
+  height: 100%;/*the grid cover tha whole viewPort */
 }
-.header {
+header{
   grid-area: header;
   background-color: #203040;
-  color: #ffffff;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.5rem;
 }
-.brand a {
-  color: #ffffff;
-  font-size: 2.5rem;
-  font-weight: bold;
-  text-decoration: none;
-}
-.header-links a {
-  color: #ffffff;
-  text-decoration: none;
-  margin: 1rem;
-}
-.header-links a:hover {
-  color: cornflowerblue;
-}
-.main {
+main{
   grid-area: main;
+ 
 }
-.footer {
+footer{
   grid-area: footer;
   background-color: #203040;
   color: #ffffff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+}
+/*common*/
+h1{
+  font-size: 2rem;
+  padding: 1rem 0;
+}
+h2{
+  font-size: 1.8rem;
+  
 }
 
-a {
+a{
   text-decoration: none;
 }
-a:hover {
+a:hover{
   color: rgb(237, 143, 100);
 }
-/* Home Screen*/
-.products {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-}
-.products li {
-  flex: O 1 34rem; /*flex grow flex shrink flex basis*/
-  margin: 1rem;
-  height: 50rem;
-  border-bottom: 0.1rem #c0c0c0 solid;
+ul{
+  margin: 0;
+  padding: 0;
   list-style-type: none;
-  padding: 0;
 }
-.product {
+li{
+  margin-top:1rem;
+}
+.row{
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
-}
-.product-name {
-  font-size: 2rem;
-  font-weight: bold;
-}
-.Product-brand {
-  font-size: 1.2rem;
-  color: #808080;
-}
-.product-price {
-  font-size: 2.2rem;
-  font-weight: bold;
-  color: #808080;
-}
-.product-image {
-  max-width: 34rem;
-  max-height: 34rem;
-}
-.product-rating {
-  margin-bottom: 1rem;
-}
-
-/*sideBar*/
-
-.brand button {
-  font-size: 3rem;
-  padding: 0.5rem;
-  background: none;
-  border: none;
-  color: #ffffff;
-  cursor: pointer;
-}
-.sidebar {
-  position: fixed;
-  transition: all 0.5s;
-  transform: translateX(-30rem);
-  width: 30rem;
-  background-color: #ffffff;
-  height: 100%;
-}
-.sidebar.open {
-  /* class ="sidebar open "  add class second class called open next to sidebar class*/
-  transform: translateX(0);
-}
-.sidebar-close-button {
-  /*border-radius: 50%;
-  border:.1rem solid;*/
-  width: 3rem;
-  height: 3rem;
-  font-size: 2rem;
-  padding: 0;
-  cursor: pointer;
-  position: absolute;
-  right: 0.5rem;
-  top: 1.5rem;
-}
-/* Product Details*/
-.details {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
   flex-wrap: wrap;
-  padding: 1rem;
-}
-.details-image {
-  flex: 2 1 50rem;
-}
-.details-image img {
-  max-width: 50rem;
-  width: 100%;
-  max-height: 50rem;
-  
-}
-.details-infos {
-  flex: 1 1 30rem;
-}
-.details-action {
-  flex: 1 1 30rem;
-}
-.details-infos ul, .details-action ul{
-  list-style: none;
-  padding: 0;
-}
-.details-infos li, .details-action li{
-  margin-bottom:1rem ;
-}
-.back-to-result{
-  padding: 1rem;
-}
-.details-action{
-  border: .1rem rgb(109, 107, 107) solid;
-  border-radius: .5rem;
-  background-color:#f8f8f8;
-  padding: 1rem;
-}
-.details-action ul li:last-child{
-  display: flex;
-  flex-direction: column;
-}
-.button{
-  padding: 1rem;
-  border: .1rem #808080 solid;
-  cursor: pointer;
-  border-radius: .5rem;
-  background-color: rgb(8, 170, 170);
-  color: #ffffff;
-}
-.button:hover{
-  color:white;
-  background-color: rgb(1, 153, 153);
-}
-/* cart */
-.cart{
-  border: 1px cadetblue solid;
- padding: .1rem;
-  margin:1rem;
-  border-radius: 5px;
-
-}
-.cart li{
-  display: flex;
-  align-items: center;
   justify-content: space-between;
-  background-color: ghostwhite;
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-
-.cart-image img{
-  max-height: 15rem;
-  max-width: 20rem;
-}
-.cart-list{
-  position: absolute;
-  right:30rem;
-  padding: 2rem;
-  
-}
-.cart-list div{
-  padding: .3rem;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-size:16px;
-}
-
-.cart-action{
-  display: flex;
-  flex-direction: column;
-  background-color: #f8f8f8;
   align-items: center;
-  /* border:.1rem #808080 solid; */
+}
+
+.row.center{/*add subclass*/
+  justify-content: center;
+}
+
+.row.top{
+  align-items: flex-start;
+  padding:1rem;
+}
+
+.col-1{
+  flex: 1 1 25rem;/* 1/4 shrinkable width */
+  text-align: left;
+}
+.col-2{
+  flex: 2 1 50rem;/* 1/2 shrinkable width */
+  text-align: center;
+}
+/*header*/
+header a{
+  color: #ffffff;
+  margin-right:2rem;
+}
+a.brand{/*a that has brand class :override a */
+color: #ffffff;
+font-size: 3rem;
+font-weight: bold;
+margin-left: 2rem;
+}
+
+
+
+/*image */
+img{
   border-radius: .5rem;
+}
+img.medium{
+  max-width:20rem ;
+  height:20rem;
+  width: 100%;
+}
+.large{
+  max-width:35rem ;
+  height:50rem;
+  width: 100%;
+}
+
+/*card */
+.card{
+  border:0.1rem #c0c0c0 solid;
+  background-color: #f8f8f8;
+  border-radius: .5rem;
+  margin:1rem;
+  transition: transform .2s;
+}
+.card:hover {
+  transform: scale(1.02); 
+}
+
+.card-body{
+ text-align: center;
   padding: 1rem;
-  border: 1px rgb(38, 110, 107) solid;
+}
+.card-body > * {/*select all direct child of card-body */
+margin-bottom: .5rem;
+}
+
+.price{
+  font-size: 2rem;
+
+}
+
+/*rating*/
+.rating span{
+  color:#F0C040;
+  margin: .1rem;
+}
+.rating span:last-child{
+  color: #404040;
+}
+/*  */
+.error{
+  color: brown;
+}
+.success{
+  color: rgb(23, 151, 23);
 }

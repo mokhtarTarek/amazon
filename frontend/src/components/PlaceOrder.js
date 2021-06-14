@@ -2,35 +2,33 @@ import React, { useEffect } from "react";
 import {  Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {addToCart,removeFromCart} from "../redux/actions/cartActions";
+import CheckoutSteps from "./CkeckoutSteps";
 
 
-function CartScreen(props) {
+function PlaceOrder(props) {
   //---------------------CONST-----------------------------
 
   const cart = useSelector((state) => state.cart);
   //distructuring cart obj
-  const { cartItems } = cart;
+  const { cartItems,shipping,payment } = cart;
+  if(!shipping){
+    props.history.push('/shipping')
+  }
+  if(!payment){
+    props.history.push('/payment')
+  }
   const dispatch = useDispatch();
-  //get the id from the url
-  const productId = props.match.params.id;
-  //get the qty from the query string 'qty=3' :if it not exist the qty =1
-  const qty = props.location.search
-    ? Number(props.location.search.split("=")[1])
-    : 1;
-
+  
+  
     //----------------------HOOKS---------------------------
   useEffect(() => {
-    if (productId) {
-      dispatch(addToCart(productId, qty));
-    }
+    
   }, []);
-  console.log(Array(5))
+  
 
 
 //-----------------------EVENTS HANDLERS---------------------
-  const removeFromCartHandler = (productId)=>{
-    dispatch(removeFromCart(productId));
-  }
+  
 const checkOutHandler=()=>{
   //REDIRECT USER TO THE SINGIN PAGE
   props.history.push("/signin?redirect=shipping")
@@ -38,7 +36,9 @@ const checkOutHandler=()=>{
 
   return (
     <div>
-      <h3>Shopping Cart</h3>
+      <CheckoutSteps step1 step2 step3 step4></CheckoutSteps>
+      <div>
+     
       <div className="cart">
         {cartItems.length === 0 ? 
           <div>the cart is empty</div>
@@ -71,8 +71,9 @@ const checkOutHandler=()=>{
                 <div>
                   <div>Price: {item.price}$</div>
                 </div>
-                <button className="button" onClick={()=>removeFromCartHandler(item.product)} >Delete</button>
+                <button className="button"  >Delete</button>
               </div>
+
               <div className="cart-action">
                 <h3>
                   {/* Subtotal ({cartItems.reduce((a, c) => a + c.qty, 0)} items) :
@@ -93,8 +94,10 @@ const checkOutHandler=()=>{
         <div></div>
       </div>
     </div>
+    </div>
+    
   );
 }
 
-export default CartScreen;
+export default PlaceOrder;
 
