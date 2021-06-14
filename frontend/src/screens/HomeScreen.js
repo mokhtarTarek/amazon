@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Product from "../components/Product";
-import axios from "axios";
+
 
 import { useDispatch, useSelector } from "react-redux";
 import { listProducts } from "../redux/actions/productAction";

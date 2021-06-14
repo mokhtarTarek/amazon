@@ -7,13 +7,13 @@ import ProductScreen from "./screens/ProductScreen";
 import HomeScreen from "./screens/HomeScreen";
 import CartScreen from "./screens/CartScreen";
 
-import SigninScreen from "./components/SigninScreen";
-import RegisterScreen from "./components/RegisterScreen";
+//import SigninScreen from "./components/SigninScreen";
+//import RegisterScreen from "./components/RegisterScreen";
 import { useSelector } from "react-redux";
 
-import ShippingScreen from "./components/ShippingScreen";
-import PaymentScreen from "./components/PayementScreen";
-import PlaceOrder from "./components/PlaceOrder";
+//import ShippingScreen from "./components/ShippingScreen";
+//import PaymentScreen from "./components/PayementScreen";
+//import PlaceOrder from "./components/PlaceOrder";
 
 
 function App() {
@@ -25,12 +25,12 @@ function App() {
   //DESTRUCTURE
   //const { userInfos } = userSignin;
  
-  const openMenu = () => {
-    document.querySelector(".sidebar").classNameList.add("open");
-  };
-  const closeMenu = () => {
-    document.querySelector(".sidebar").classNameList.remove("open");
-  };
+  // const openMenu = () => {
+  //   document.querySelector(".sidebar").classNameList.add("open");
+  // };
+  // const closeMenu = () => {
+  //   document.querySelector(".sidebar").classNameList.remove("open");
+  // };
 
   return (<BrowserRouter>
     <div className="grid-container">

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { jwt } from "jsonwebtoken";
+//import { jwt } from "jsonwebtoken";
 import {
   PRODUCT_DETAILS_FAIL,
   PRODUCT_DETAILS_REQUEST,
@@ -20,7 +20,7 @@ const listProducts = () => async (dispatch) => {
     dispatch({ type: PRODUCT_LIST_REQUEST });
     //destructuring data from the server response // data:[]
     const  {data}  = await axios.get("/api/products");
-    console.log(data)
+    
     dispatch({ type: PRODUCT_LIST_SECCESS, payload: data });
   } catch (error) {
     dispatch({ type: PRODUCT_LIST_FAIL, payload: error.message });
@@ -32,7 +32,7 @@ const detailsProduct = (productId) => async (dispatch) => {
     dispatch({ type: PRODUCT_DETAILS_REQUEST,payload:productId });
     const  {data}  = await axios.get(`/api/products/${productId}`);
 
-    console.log(data)
+    
     dispatch({ type: PRODUCT_DETAILS_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
