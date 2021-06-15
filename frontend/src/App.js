@@ -52,6 +52,7 @@ function App() {
       </header>
 
       <main>
+        <Route path='/cart' component={CartScreen} exact></Route>
         <Route path='/cart/:id' component={CartScreen}></Route>
         <Route path='/products/:id' component={ProductScreen}></Route>
         <Route path='/' component={HomeScreen} exact></Route>

@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import MessageBox from "../components/MessageBox";
 
-import { addToCart,deleteFromCart } from "../redux/actions/cartActions";
+import { addToCart,removeFromCart } from "../redux/actions/cartActions";
 
 function CartScreen(props) {
   const productId = props.match.params.id;
@@ -18,9 +18,14 @@ function CartScreen(props) {
     dispatch(addToCart(productId, qty));
   }, [dispatch, productId, qty]);
 
-  const removeFromCartHandler =(productId)=>{
-    dispatch(deleteFromCart(productId))
+  const removeFromCartHandler = (productId) => {
+    dispatch(removeFromCart(productId))
+  };
+
+  const checkoutHandler = ()=>{
+    props.history.push('/signin?redirect=shipping')
   }
+
   return (
     <div className="row top">
       <div className="col-2">
@@ -58,13 +63,39 @@ function CartScreen(props) {
                   </div>
                   <div> {item.price} </div>
                   <div>
-                      <button onClick={()=>removeFromCartHandler(item.productId)}>Delete</button>
+                    <button
+                      onClick={() => removeFromCartHandler(item.productId)}
+                    >
+                      Delete
+                    </button>
                   </div>
                 </div>
               </li>
             ))}
           </ul>
         )}
+      </div>
+      <div className="col-1">
+        <div className="static-card">
+          <ul>
+            <li>
+              <div className="row">
+                <h2>
+                  subtotal {cartItems.reduce((a, c) => a + c.qty, 0)} items :
+                </h2>
+                <h2>$ {cartItems.reduce((a, c) => a + c.qty * c.price, 0)}</h2>
+              </div>
+            </li>
+            <li>
+              <button
+                type="button"
+                onClick={checkoutHandler}
+                className="primary block "
+                disabled={cartItems.length===0}
+              >Proceed to checkout</button>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   );

@@ -1,10 +1,12 @@
 import { createStore, combineReducers, compose, applyMiddleware } from "redux";
-import thunk from 'redux-thunk'
+import thunk from "redux-thunk";
 //import Cookie from 'js-cookie'
 import { cartReducer } from "./reducers/cartReducers";
 import {
-    productListReducer, productDetailReducer,
-    productSaveReducer, productDeleteReducer
+  productListReducer,
+  productDetailReducer,
+  productSaveReducer,
+  productDeleteReducer,
 } from "./reducers/productsReducers";
 import { userSigninReducers } from "./reducers/userReducers";
 import { userRegisterReducers } from "./reducers/userReducers";
@@ -15,31 +17,29 @@ import { userRegisterReducers } from "./reducers/userReducers";
 
 //using local storage instead
 const initialState = {
-    cart:
-    {
-        cartItems:
-            localStorage.getItem('cartItems')
-                ? JSON.parse(localStorage.getItem('cartItems'))
-                : []
-    }
-
+  cart: {
+    cartItems: localStorage.getItem("cartItems")
+      ? JSON.parse(localStorage.getItem("cartItems"))
+      : [],
+  },
 };
 
 const reducer = combineReducers({
-    productList: productListReducer,
-    productDetails: productDetailReducer,
-    cart: cartReducer,
-    userSignIn: userSigninReducers,
-    userRegister: userRegisterReducers,
-    productSave: productSaveReducer,
-    productDelete: productDeleteReducer
-})
+  productList: productListReducer,
+  productDetails: productDetailReducer,
+  cart: cartReducer,
+  userSignIn: userSigninReducers,
+  userRegister: userRegisterReducers,
+  productSave: productSaveReducer,
+  productDelete: productDeleteReducer,
+});
 
-const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
-    reducer,
-    initialState,
-    composeEnhancer(applyMiddleware(thunk)));
+  reducer,
+  initialState,
+  composeEnhancer(applyMiddleware(thunk))
+);
 export default store;
 
 /*
