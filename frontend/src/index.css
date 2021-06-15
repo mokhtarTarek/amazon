@@ -59,6 +59,9 @@ ul{
 li{
   margin:1rem;/*vertical space between items*/
 }
+select{
+  min-width: 6.2rem;
+}
 .row{
   display: flex;
   flex-wrap: wrap;
@@ -82,6 +85,9 @@ li{
 .col-2{
   flex: 2 1 50rem;/* 1/2 shrinkable width */
   text-align: center;
+}
+.min-30{
+  min-width: 30rem;
 }
 input,textarea,select,
 button{
@@ -135,6 +141,11 @@ img.medium{
   max-width: 35rem;
   height: 50rem;
   
+}
+img.small{
+  width: 100%;
+  max-width:6rem ;
+ 
 }
 
 .badge{
