@@ -1,10 +1,19 @@
 import express from "express";
-import { getToken } from "../util";
-import User from "../models/userModel";
+import expressAsyncHandler from 'express-async-handler'
+//import { getToken } from "../util";
+import User from "../models/userModel.js";
+import data from "../data.js";
 
-const router = express.Router();
+const userRouter = express.Router();
 
-router.post("/signin", async (req, res) => {
+userRouter.get("/seed",expressAsyncHandler( async (req, res) => {
+    //await User.remove({})//remove all users before insertMany
+    const createdUsers = await User.insertMany(data.users);
+    res.send(createdUsers);
+   
+}));
+
+userRouter.post("/signin", async (req, res) => {
   console.log(req.body);
 
   const signinUser = await User.findOne({
@@ -25,7 +34,7 @@ router.post("/signin", async (req, res) => {
 });
 
 
-router.post("/register", async (req, res) => {
+userRouter.post("/register", async (req, res) => {
   const user = new User({
       name: req.body.name,
       email: req.body.email,
@@ -47,18 +56,5 @@ router.post("/register", async (req, res) => {
   }
 });
 
-router.get("/createadmin", async (req, res) => {
-  try {
-    const user = new User({
-      name: "TarekMokhtar",
-      email: "tarekMoktar3@gmail.com",
-      password: "1234",
-      isAdmin: true,
-    });
-    const newUser = await user.save();
-    res.send(user);
-  } catch (error) {
-    res.send({ msg: error.message });
-  }
-});
-export default router;
+
+export default userRouter;
