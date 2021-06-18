@@ -10,6 +10,7 @@ import CartScreen from "./screens/CartScreen";
 //import SigninScreen from "./components/SigninScreen";
 //import RegisterScreen from "./components/RegisterScreen";
 import { useSelector } from "react-redux";
+import SigninScreen from "./screens/SigninScreen";
 
 //import ShippingScreen from "./components/ShippingScreen";
 //import PaymentScreen from "./components/PayementScreen";
@@ -20,10 +21,11 @@ function App() {
   //GET CARTiTEMS FROM REDUX STORE
   const cart = useSelector(state => state.cart)
   const { cartItems } = cart;
+ 
   //GET USER INFOS FROM REDUX STORE
-  //const userSignin = useSelector((state) => state.userSignIn);
+  const userSignin = useSelector((state) => state.userSignIn);
   //DESTRUCTURE
-  //const { userInfos } = userSignin;
+  const { userInfos } = userSignin;
  
   // const openMenu = () => {
   //   document.querySelector(".sidebar").classNameList.add("open");
@@ -47,14 +49,30 @@ function App() {
               <span className='badge' > {cartItems.length} </span>
             }
           </Link>
-          <Link to="/signin">Sign In</Link>
+          {
+           
+            userInfos? 
+             <div className ='dropdown'>
+            <Link to="#"> {userInfos.name}
+             <i className='fa fa-caret-down'></i> 
+             </Link>
+              <ul>
+                
+              </ul>
+
+            </div>
+
+            :<Link to="/signin"> Sign In </Link>
+            
+          }
+          
         </div>
       </header>
 
       <main>
-        <Route path='/cart' component={CartScreen} exact></Route>
-        <Route path='/cart/:id' component={CartScreen}></Route>
+        <Route path='/cart/:id?' component={CartScreen}></Route>
         <Route path='/products/:id' component={ProductScreen}></Route>
+        <Route path='/signin' component={SigninScreen}></Route>
         <Route path='/' component={HomeScreen} exact></Route>
 
 

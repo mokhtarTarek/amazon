@@ -18,7 +18,8 @@ import {
 const listProducts = () => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_LIST_REQUEST });
-    //destructuring data from the server response // data:[]
+    //destructuring {data} property from the server response object
+    //console.log(await axios.get("/api/products"))
     const  {data}  = await axios.get("/api/products");
     
     dispatch({ type: PRODUCT_LIST_SECCESS, payload: data });
