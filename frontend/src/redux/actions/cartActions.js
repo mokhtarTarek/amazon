@@ -1,9 +1,9 @@
 import axios from "axios";
-import Cookie from "js-cookie";
+//import Cookie from "js-cookie";
 import {
   CART_ADD_ITEM,
   CART_REMOVE_ITEM,
-  CART_SAVE_SHIPPING,
+  CART_SAVE_SHIPPING_ADDRESS,
   CART_SAVE_PAYEMENT,
 } from "../constants/cartConstants";
 
@@ -42,15 +42,19 @@ const removeFromCart = (id) => {
     );
   };
 };
-const saveShipping = (data) => {
-  return (dispatch) => {
-    dispatch({ type: CART_SAVE_SHIPPING, payload: data });
-  };
+
+const saveShippingAddress = (data) => (dispatch) => {
+  dispatch({ type: CART_SAVE_SHIPPING_ADDRESS, payload: data });
+  localStorage.setItem('shippingAddress', JSON.stringify(data));
 };
+
+  
+
+
 const savePayment = (data) => {
   return (dispatch) => {
     dispatch({ type: CART_SAVE_PAYEMENT, payload: data });
   };
 };
 
-export { addToCart, removeFromCart, saveShipping, savePayment };
+export { addToCart, removeFromCart, saveShippingAddress, savePayment };

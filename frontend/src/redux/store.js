@@ -17,11 +17,19 @@ import { userRegisterReducers } from "./reducers/userReducers";
 
 //using local storage instead
 const initialState = {
+  userSignIn: {
+    userInfos:localStorage.getItem('userInfos')
+    ? JSON.parse(localStorage.getItem("userInfos"))
+      : null,
+  },
   cart: {
     cartItems: localStorage.getItem("cartItems")
       ? JSON.parse(localStorage.getItem("cartItems"))
       : [],
-  },
+   },
+  // shippingAdress: localStorage.getItem("shippingAdress")
+  //     ? JSON.parse(localStorage.getItem("shippingAdress"))
+  //     : {},
 };
 
 const reducer = combineReducers({

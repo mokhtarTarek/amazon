@@ -9,7 +9,11 @@ import CartScreen from "./screens/CartScreen";
 
 //import SigninScreen from "./components/SigninScreen";
 //import RegisterScreen from "./components/RegisterScreen";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import SigninScreen from "./screens/SigninScreen";
+import { signOut } from "./redux/actions/userActions";
+import RegisterScreen from "./screens/RegisterScreen";
+import ShippingAdressScreen from "./screens/ShippingAdressScreen";
 
 //import ShippingScreen from "./components/ShippingScreen";
 //import PaymentScreen from "./components/PayementScreen";
@@ -17,13 +21,15 @@ import { useSelector } from "react-redux";
 
 
 function App() {
-  //GET CARTiTEMS FROM REDUX STORE
+  
   const cart = useSelector(state => state.cart)
   const { cartItems } = cart;
-  //GET USER INFOS FROM REDUX STORE
-  //const userSignin = useSelector((state) => state.userSignIn);
-  //DESTRUCTURE
-  //const { userInfos } = userSignin;
+  const userSignin = useSelector((state) => state.userSignIn);
+  const { userInfos } = userSignin;
+  const dispatch = useDispatch()
+  const signoutHandler=()=>{
+    dispatch(signOut())
+ }
  
   // const openMenu = () => {
   //   document.querySelector(".sidebar").classNameList.add("open");
@@ -47,15 +53,38 @@ function App() {
               <span className='badge' > {cartItems.length} </span>
             }
           </Link>
-          <Link to="/signin">Sign In</Link>
+          {
+           
+            userInfos? 
+             <div className ='dropdown' >
+               
+            <Link to="#"> {userInfos.name}
+             <i className='fa fa-caret-down'></i>{' '} 
+             </Link>
+              
+              <ul className='dropdown-content'>
+               
+                <Link to='#signout' 
+                onClick={signoutHandler}>Sign Out</Link>
+              </ul>
+
+            </div>
+
+            :<Link to="/signin"> Sign In </Link>
+            
+          }
+          
         </div>
       </header>
 
       <main>
-        <Route path='/cart' component={CartScreen} exact></Route>
-        <Route path='/cart/:id' component={CartScreen}></Route>
-        <Route path='/products/:id' component={ProductScreen}></Route>
-        <Route path='/' component={HomeScreen} exact></Route>
+        <Route path='/cart/:id?' component={CartScreen}exact></Route>
+        <Route path='/products/:id' component={ProductScreen} exact ></Route>
+        <Route path='/signin' component={SigninScreen}></Route>
+        <Route path='/register' component={RegisterScreen}></Route>
+        <Route path='/shipping' component={ShippingAdressScreen}></Route>
+
+        <Route path='/' component={HomeScreen}exact></Route>
 
 
       </main>

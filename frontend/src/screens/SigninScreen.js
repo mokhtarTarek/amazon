@@ -1,17 +1,20 @@
 import React, {useEffect, useState}from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom';
+import LoadingBox from '../components/LoadingBox';
+import MessageBox from '../components/MessageBox';
 import { signin } from '../redux/actions/userActions';
 
 function SigninScreen(props) {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const userSignIn=useSelector(state=>state.userSignIn)
-    const {loading,userInfos,error}=userSignIn
-    const dispatch = useDispatch();
 
     const redirect = props.location.search?
     props.location.search.split("=")[1]:"/"
+
+    const userSignIn = useSelector(state=>state.userSignIn)
+    const {userInfos,loading,error} = userSignIn
+    const dispatch = useDispatch();
 
     useEffect(() => {
         if(userInfos){
@@ -20,24 +23,27 @@ function SigninScreen(props) {
         return () => {
             //
         }
-    }, [userInfos])
+    }, [props.history,redirect,userInfos])
 
     const submitHandler = e=>{
         e.preventDefault();
         dispatch(signin(email,password));
     }
 
-    return <div className="form" >
-            <form onSubmit= {submitHandler} >
-            <ul className= "form-container" >
-                <li>
+    return <div>
+            <form className="form" 
+            onSubmit= {submitHandler} >
+            
+                <div>
                     <h2>Sign-In</h2>
-                </li>
-                <li>
-                    {loading && <div>Loading...</div>}
-                    {error && <div> {error} </div>}
-                </li>
-                <li>
+                </div>
+
+                <div>  
+                    {loading && <LoadingBox></LoadingBox>}
+                    {error && <MessageBox variant='danger'  > {error} </MessageBox>}
+                </div>
+
+                <div>
                     <label htmlFor="email">Email</label>
                     <input 
                     type="email" 
@@ -45,8 +51,8 @@ function SigninScreen(props) {
                     id="email"
                     onChange={e=>setEmail(e.target.value)}
                     />
-                </li>
-                <li>
+                </div>
+                <div>
                     <label htmlFor="password">Password</label>
                     <input 
                     type="password" 
@@ -54,19 +60,24 @@ function SigninScreen(props) {
                     id="password"
                     onChange={e=>setPassword(e.target.value)}
                     />
-                </li>
-                <li>
-                    <button type="submit" className="button primary" >Signin</button>
-                </li>
-                <li>
-                    New to amazona?
-                </li>
-                <li>
-                    <Link to={redirect==='/'?"register":"register?redirect="+redirect}
-                    className= "button secondary text-center">Create your amazona account</Link>
-                </li>
-
-            </ul>
+                </div>
+                <div>
+                    <label/>
+                    <button type="submit" 
+                    className="primary"
+                   
+                    >
+                    Signin</button>
+                </div>
+                <div>
+                    <label/>
+                    <div>
+                    New to amazona?{' '}
+                    <Link to={`/register?redirect=${redirect}`}>
+                    Create your amazona account
+                    </Link>
+                    </div>
+                </div>
             </form>
             
         </div>

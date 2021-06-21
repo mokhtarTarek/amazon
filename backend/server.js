@@ -1,16 +1,20 @@
 import express from "express";
 // import data from "./data.js";
-// import dotenv from 'dotenv';
+import dotenv from 'dotenv';
 // import config from './config';
 import mongoose from "mongoose";
 // import bodyParser from 'body-parser'
 import userRouter from './routers/userRouter.js'
 import productRouter from './routers/productRouter.js'
 
-// dotenv.config()
+dotenv.config()
+
+const app = express();
+app.use(express.json())
+app.use(express.urlencoded({extended:true}))
 
 // const mongodbUrl = config.MONGODB_URL
-// //console.log(mongodbUrl)
+
 mongoose.connect(
     process.env.MONGODB_URL || "mongodb+srv://amazona2020:Spartacus1986@cluster0.j4qp7.mongodb.net/amazon?retryWrites=true&w=majority",
   {
@@ -20,8 +24,7 @@ mongoose.connect(
   }
 );
 
-const app = express();
-// app.use(bodyParser.json())
+
 
 app.use('/api/users',userRouter)
 app.use('/api/products',productRouter)
