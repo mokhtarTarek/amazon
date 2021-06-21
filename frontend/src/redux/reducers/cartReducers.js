@@ -2,10 +2,10 @@ import {
   CART_ADD_ITEM,
   CART_REMOVE_ITEM,
   CART_SAVE_PAYEMENT,
-  CART_SAVE_SHIPPING,
+  CART_SAVE_SHIPPING_ADDRESS,
 } from "../constants/cartConstants";
 
-function cartReducer(state = { cartItems: [],shipping:{},payment:{} }, action) {
+function cartReducer(state = { cartItems: []}, action) {
   switch (action.type) {
     case CART_ADD_ITEM:
     //verifier si l'objet exsit dans la carte
@@ -30,11 +30,10 @@ function cartReducer(state = { cartItems: [],shipping:{},payment:{} }, action) {
         ...state,
         cartItems: state.cartItems.filter((x) => x.productId !== action.payload),
       };
-    case CART_SAVE_SHIPPING:
-      return { ...state, shipping: action.payload };
-
-    case CART_SAVE_PAYEMENT:
-      return { ...state, payment: action.payload };
+    case CART_SAVE_SHIPPING_ADDRESS:
+      return { ...state, shippingAddress: action.payload };
+    // case CART_SAVE_PAYEMENT:
+    //   return { ...state, payment: action.payload };
 
     default:
       return state;

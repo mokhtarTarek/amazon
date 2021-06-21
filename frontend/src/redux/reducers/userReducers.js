@@ -9,7 +9,7 @@ const userRegisterReducers = (state={},action)=>{
             return {
                 loading:false,userInfos:action.payload
             } 
-        case USER_REGISTER_FAIL:
+        case USER_REGISTER_FAIL: 
             return{
                 loading:false,error:action.payload
             }     

@@ -1,18 +1,19 @@
 import React, {useEffect, useState}from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom';
+import LoadingBox from '../components/LoadingBox';
+import MessageBox from '../components/MessageBox';
 import { signin } from '../redux/actions/userActions';
 
 function SigninScreen(props) {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    
 
     const redirect = props.location.search?
     props.location.search.split("=")[1]:"/"
 
-    const userSignIn=useSelector(state=>state.userSignIn)
-    const {userInfos}=userSignIn
+    const userSignIn = useSelector(state=>state.userSignIn)
+    const {userInfos,loading,error} = userSignIn
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -37,10 +38,10 @@ function SigninScreen(props) {
                     <h2>Sign-In</h2>
                 </div>
 
-                {/* <li>
-                    {loading && <div>Loading...</div>}
-                    {error && <div> {error} </div>}
-                </li> */}
+                <div>  
+                    {loading && <LoadingBox></LoadingBox>}
+                    {error && <MessageBox variant='danger'  > {error} </MessageBox>}
+                </div>
 
                 <div>
                     <label htmlFor="email">Email</label>
@@ -72,7 +73,7 @@ function SigninScreen(props) {
                     <label/>
                     <div>
                     New to amazona?{' '}
-                    <Link to='/register'>
+                    <Link to={`/register?redirect=${redirect}`}>
                     Create your amazona account
                     </Link>
                     </div>
