@@ -16,24 +16,26 @@ export const generateToken = (user) => {
   );
 };
 
-// const isAuth = (req,res,next)=>{
-//     const token = req.headers.authorization;
+export const isAuth = (req,res,next)=>{
+    const authorization = req.headers.authorization;
 
-//     if(token){
-//         const onlyToken = token.slice(7,token.length);
-//         jwt.verify(onlyToken,config.JWT_SECRET,(err,decode)=>{
-//             if (err){
-//                 return res.status(401).send({msg:'Invalid Token'})
-//             }
-//             req.user = decode;
-//             next();
-//             return
-//         });
-//     }else{
-//         return res.status(401).send({msg:'Token is not supplied'})
-//     }
+    if(authorization){
+        const token = authorization.slice(7,token.length);
+        jwt.verify(token,process.env.JWT_SECRET ||'secret',(err,decode)=>{
+            if (err){
+                return res.status(401).send({message:'Invalid Token'})
+            }else{
+              req.user = decode;
+            next();//pass to the next middleware : next call
+            }
+            
+            
+        });
+    }else{
+        return res.status(401).send({msg:'Token is not supplied'})
+    }
 
-// }
+}
 
 // const isAdmin = (req,res,next)=>{
 //     if(req.user && req.user.isAdmin){
@@ -41,7 +43,4 @@ export const generateToken = (user) => {
 //     }
 //     return res.status(401).send({msg: 'Admin Token is not valid'})
 
-// }
-// export{
-//     generateToken,isAuth,isAdmin
-// }
+

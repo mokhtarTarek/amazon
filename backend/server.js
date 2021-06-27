@@ -6,6 +6,7 @@ import mongoose from "mongoose";
 // import bodyParser from 'body-parser'
 import userRouter from './routers/userRouter.js'
 import productRouter from './routers/productRouter.js'
+import orderRouter from './routers/orderRouter.js'
 
 dotenv.config()
 
@@ -28,7 +29,7 @@ mongoose.connect(
 
 app.use('/api/users',userRouter)
 app.use('/api/products',productRouter)
-
+app.use('/api/orders',orderRouter)
 //error catcher middleware for all routers wrapped in  expressAssyncHandler
 app.use((err,req,res,next)=>{
     res.status(500).send({message:err.message});

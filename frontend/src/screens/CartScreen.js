@@ -27,8 +27,8 @@ function CartScreen(props) {
   }
 
   return (
-    <div className="row top">
-      <div className="col-2">
+    <div className="row top ">
+      <div className="col-2 static-card">
         <h1>Shopping Cart</h1>
         {cartItems.length === 0 ? (
           <MessageBox>
