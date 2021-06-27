@@ -9,6 +9,7 @@ function ShippingAdressScreen(props) {
   const { userInfos } = userSignin;
   const cart = useSelector((state) => state.cart);
   const { shippingAddress } = cart;
+  
   if (!userInfos) {
     props.history.push("/signin");
   }
@@ -20,7 +21,6 @@ function ShippingAdressScreen(props) {
   const [country, setCountry] = useState(shippingAddress.country);
 
   const dispatch = useDispatch();
-
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(

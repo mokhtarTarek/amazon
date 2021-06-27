@@ -71,6 +71,7 @@ const signin = (email, password) => {
 const signOut = () => (dispatch) => {
   localStorage.removeItem("userInfos");
   localStorage.removeItem("cartItems");
+  localStorage.removeItem("shippingAddress");
   dispatch({ type: USER_SIGNOUT });
 };
 

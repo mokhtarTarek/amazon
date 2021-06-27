@@ -81,10 +81,11 @@ select{
 .col-1{
   flex: 1 1 25rem;/* 1/4 shrinkable width */
   text-align: left;
+  
 }
 .col-2{
   flex: 2 1 50rem;/* 1/2 shrinkable width */
-  text-align: center;
+  /* text-align: center; */
 }
 .min-30{
   min-width: 30rem;
@@ -170,6 +171,7 @@ img.small{
   background-color: #f8f8f8;
   border-radius: .5rem;
   margin:1rem;
+  padding: 0rem 2rem
 }
 .card:hover {
   transform: scale(1.02); 
